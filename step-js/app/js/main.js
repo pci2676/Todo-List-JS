@@ -19,7 +19,7 @@ function addItem() {
     addNewItem(document.getElementById('todoList'), itemText);
 }
 
-function addNewItem(list, itemText) {
+function addNewItem(todoList, itemText) {
     const dateId = getDateAsString();
 
     const listItem = getList(dateId);
@@ -28,7 +28,7 @@ function addNewItem(list, itemText) {
     listItem.addEventListener('mouseover', mouseover);
     listItem.addEventListener('mouseout', mouseout);
 
-    list.appendChild(listItem);
+    todoList.appendChild(listItem);
 }
 
 function getList(id) {
@@ -57,7 +57,15 @@ function renameItem() {
 
 function moveItem() {
     const doneList = document.getElementById("doneList");
+    const todoList = document.getElementById("todoList");
+
     const listItem = document.getElementById(this.id);
+    const listItemParent = listItem.parentElement;
+
+    if (listItemParent === doneList) {
+        todoList.appendChild(listItem);
+        return;
+    }
     doneList.appendChild(listItem);
 }
 
