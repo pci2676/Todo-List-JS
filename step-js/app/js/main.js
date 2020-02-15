@@ -23,8 +23,11 @@ function addNewItem(todoList, itemText) {
     const dateId = getDateAsString();
 
     const listItem = getList(dateId);
+
     listItem.appendChild(getSpan(dateId, itemText));
+    listItem.appendChild(getTrashIcon(dateId));
     listItem.appendChild(getPencilIcon(dateId));
+
     listItem.addEventListener('mouseover', mouseover);
     listItem.addEventListener('mouseout', mouseout);
 
@@ -80,14 +83,39 @@ function getPencilIcon(id) {
 function mouseover() {
     const pencilIcon = findPencilIconByListItem(this);
     pencilIcon.style.visibility = 'visible';
+
+    const trashIcon = findTrashIconByListItem(this);
+    trashIcon.style.visibility = 'visible';
 }
 
 function mouseout() {
     const pencilIcon = findPencilIconByListItem(this);
     pencilIcon.style.visibility = 'hidden';
+
+    const trashIcon = findTrashIconByListItem(this);
+    trashIcon.style.visibility = 'hidden';
 }
 
 function findPencilIconByListItem(target) {
     const pencilIconId = target.id.replace('li_', '');
     return document.getElementById('pencilIcon_' + pencilIconId);
+}
+
+function getTrashIcon(id) {
+    const trashIcon = document.createElement('i');
+    trashIcon.className = 'fas fa-trash-alt';
+    trashIcon.id = 'trashIcon_' + id;
+    trashIcon.onclick = deleteItem;
+    return trashIcon;
+}
+
+function deleteItem() {
+    const id = this.id.replace('trashIcon_', "");
+    const listItem = document.getElementById('li_' + id);
+    listItem.style.display = 'none';
+}
+
+function findTrashIconByListItem(target) {
+    const trashIconId = target.id.replace('li_', '');
+    return document.getElementById('trashIcon_' + trashIconId);
 }

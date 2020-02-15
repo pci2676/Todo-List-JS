@@ -39,4 +39,12 @@ ul li {
     float: right;
     padding: 5px;
     visibility: hidden;
+    color: #4cae4c;
+}
+
+.fa-trash-alt {
+    float: right;
+    padding: 5px;
+    visibility: hidden;
+    color: #F2143F;
 }
