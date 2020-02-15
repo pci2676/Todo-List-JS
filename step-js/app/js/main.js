@@ -20,11 +20,13 @@ function addItem() {
 }
 
 function addNewItem(list, itemText) {
-    const dateId = getDateAsId();
+    const dateId = getDateAsString();
 
     const listItem = getList(dateId);
     listItem.appendChild(getSpan(dateId, itemText));
-    // listItem.appendChild(getCheckBox(dateId));
+    listItem.appendChild(getPencilIcon(dateId));
+    listItem.addEventListener('mouseover', mouseover);
+    listItem.addEventListener('mouseout', mouseout);
 
     list.appendChild(listItem);
 }
@@ -40,32 +42,7 @@ function getSpan(id, itemText) {
     const span = document.createElement('span');
     span.id = 'item_' + id;
     span.innerText = itemText;
-    span.onclick = renameItem;
     return span;
-}
-
-function getCheckBox(id) {
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkBox';
-    checkbox.id = 'cb_' + id;
-    checkbox.onclick = updateItemStatus;
-    return checkbox;
-}
-
-function updateItemStatus() {
-    const childId = this.id.replace('cb_', "");
-    const itemText = document.getElementById('item_' + childId);
-
-    if (this.checked) {
-        itemText.className = 'checked';
-        return;
-    }
-    itemText.className = '';
-}
-
-function getDateAsId() {
-    const date = new Date();
-    return "" + date.getHours() + date.getMinutes() + date.getSeconds() + date.getMilliseconds();
 }
 
 function renameItem() {
@@ -73,15 +50,36 @@ function renameItem() {
     if (isEmpty(renameText)) {
         return false;
     }
-    this.innerText = renameText;
-}
-
-function removeItem() {
-    document.getElementById(this.id).style.display = 'none';
+    const spanId = this.id.replace('pencilIcon_', '');
+    const span = document.getElementById('item_' + spanId);
+    span.innerText = renameText;
 }
 
 function moveItem() {
     const doneList = document.getElementById("doneList");
     const listItem = document.getElementById(this.id);
     doneList.appendChild(listItem);
+}
+
+function getPencilIcon(id) {
+    const pencilIcon = document.createElement('i');
+    pencilIcon.id = 'pencilIcon_' + id;
+    pencilIcon.className = 'fas fa-edit';
+    pencilIcon.onclick = renameItem;
+    return pencilIcon;
+}
+
+function mouseover() {
+    const pencilIcon = findPencilIcon(this);
+    pencilIcon.style.visibility = 'visible';
+}
+
+function mouseout() {
+    const pencilIcon = findPencilIcon(this);
+    pencilIcon.style.visibility = 'hidden';
+}
+
+function findPencilIcon(target) {
+    const pencilIconId = target.id.replace('li_', '');
+    return document.getElementById('pencilIcon_' + pencilIconId);
 }
