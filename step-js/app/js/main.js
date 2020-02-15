@@ -70,16 +70,16 @@ function getPencilIcon(id) {
 }
 
 function mouseover() {
-    const pencilIcon = findPencilIcon(this);
+    const pencilIcon = findPencilIconByListItem(this);
     pencilIcon.style.visibility = 'visible';
 }
 
 function mouseout() {
-    const pencilIcon = findPencilIcon(this);
+    const pencilIcon = findPencilIconByListItem(this);
     pencilIcon.style.visibility = 'hidden';
 }
 
-function findPencilIcon(target) {
+function findPencilIconByListItem(target) {
     const pencilIconId = target.id.replace('li_', '');
     return document.getElementById('pencilIcon_' + pencilIconId);
 }
