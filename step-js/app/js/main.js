@@ -3,6 +3,7 @@ const inputText = document.getElementById("inputText");
 inputText.focus();
 
 inputText.onkeyup = function (event) {
+    console.log(event)
     if (isNotEnter(event)) {
         return false;
     }
