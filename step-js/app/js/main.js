@@ -1,11 +1,6 @@
 const inputText = document.getElementById("inputText");
-const btnAdd = document.getElementById("addBtn");
 
 inputText.focus();
-
-btnAdd.onclick = function () {
-    addItem();
-};
 
 inputText.onkeyup = function (event) {
     if (isNotEnter(event)) {
@@ -29,7 +24,7 @@ function addNewItem(list, itemText) {
 
     const listItem = getList(dateId);
     listItem.appendChild(getSpan(dateId, itemText));
-    listItem.appendChild(getCheckBox(dateId));
+    // listItem.appendChild(getCheckBox(dateId));
 
     list.appendChild(listItem);
 }
@@ -37,7 +32,7 @@ function addNewItem(list, itemText) {
 function getList(id) {
     const listItem = document.createElement('li');
     listItem.id = 'li_' + id;
-    listItem.ondblclick = removeItem;
+    listItem.ondblclick = moveItem;
     return listItem;
 }
 
@@ -83,4 +78,10 @@ function renameItem() {
 
 function removeItem() {
     document.getElementById(this.id).style.display = 'none';
+}
+
+function moveItem() {
+    const doneList = document.getElementById("doneList");
+    const listItem = document.getElementById(this.id);
+    doneList.appendChild(listItem);
 }
