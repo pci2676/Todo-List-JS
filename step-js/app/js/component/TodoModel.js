@@ -6,6 +6,23 @@
         this.storage = storage;
     }
 
+    TodoModel.prototype.create = function (title, callback) {
+        console.log('Model.create method execute!');
+        title = title || '';
+        callback = callback || function () {
+        };
+
+        const newItem = {
+            title: title.trim(),
+            completed: false
+        };
+        this.storage.save(newItem, callback);
+    };
+
+    TodoModel.prototype.read = function (callback) {
+        this.storage.findAll(callback);
+    };
+
     exports.app = exports.app || {};
     exports.app.TodoModel = TodoModel;
 })(this);
