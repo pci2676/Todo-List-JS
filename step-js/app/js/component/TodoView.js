@@ -11,12 +11,12 @@
     }
 
     TodoView.prototype.bind = function (event, handler) {
-        var self = this;
+        const self = this;
         //event: newTodo
         //handler: controller.addItem
         if (event === 'newTodo') {
             console.log('View.bind.newTodo execute!');
-            var temp = self.$newTodo;
+            const temp = self.$newTodo;
             temp.addEventListener('change', function () {
                 handler(self.$newTodo.value); //addItem(self.$newTodo.value)
             });
@@ -24,8 +24,8 @@
     };
 
     TodoView.prototype.render = function (viewCmd, data) {
-        var self = this;
-        var viewCommands = {
+        const self = this;
+        const viewCommands = {
             //data로 넘어오는 값이 storage에 있는 모든 data이다. 모든 데이터를 출력하는 역할을 하는 메소드.
             showEntries: function () {
                 console.log('View.render.showEntries execute!');
