@@ -1,14 +1,16 @@
-import TodoInput from "./component/TodoInput.js";
+(function () {
+    'use strict';
 
-let enrolledItems = [];
+    function App() {
+        console.log('App created!');
+        this.storage = new app.Storage(name);
+        this.model = new app.Model(this.storage);
+        this.template = new app.Template();
+        this.view = new app.View(this.template);
+        this.controller = new app.Controller(this.model, this.view);
+    }
 
-function App() {
-    TodoInput(enrollItem);
-}
-
-const enrollItem = function (item) {
-    enrolledItems.push(item);
-};
+    var todo = new App();
+})();
 
 
-App();
