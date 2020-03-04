@@ -12,6 +12,10 @@
             self.addItem(title);
         });
         this.showAll();//initializing!
+
+        this.view.bind('itemRemove', function (item) {
+            self.removeItem(item.id);
+        });
     }
 
     TodoController.prototype.showAll = function () {
@@ -32,6 +36,13 @@
             self.view.render('clearNewTodo', title);//input tag를 비워준다.
         });
         this.showAll();
+    };
+
+    TodoController.prototype.removeItem = function (id) {
+        const self = this;
+        self.model.remove(id, function () {
+            self.view.render('removeItem', id);
+        });
     };
 
     exports.app = exports.app || {};

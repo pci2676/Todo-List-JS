@@ -20,7 +20,24 @@
             temp.addEventListener('change', function () {
                 handler(self.$newTodo.value); //addItem(self.$newTodo.value)
             });
+        } else if (event === 'itemRemove') {
+            const todo = self.target;
+            todo.addEventListener('click', function (event) {
+                const target = event.target;
+                if (target.className === 'destroy') {
+                    handler({id: self._getItemId(target.parentNode, 'li')});
+                }
+            });
         }
+    };
+
+    TodoView.prototype._getItemId = function (element, tagName) {
+        var li;
+        if (element.parentNode.tagName.toLowerCase() === tagName.toLowerCase()) {
+            li = element.parentNode;
+        }
+        // 해당 리스트에 해당하는 id (data-id=)를 10진수로 변경해준다.
+        return parseInt(li.dataset.id, 10);
     };
 
     TodoView.prototype.render = function (viewCmd, data) {
@@ -35,6 +52,9 @@
             clearNewTodo: function () {
                 console.log('View.render.clearNewTodo execute!');
                 self.$newTodo.value = '';
+            },
+            removeItem: function () {
+                self._removeItem(parameter);
             }
         };
         viewCommands[viewCmd]();
@@ -42,6 +62,13 @@
 
     TodoView.prototype._addItem = function (id) {
         this.$todoList.innerHTML = this.template.insert(id);
+    };
+
+    TodoView.prototype._removeItem = function (id) {
+        const element = document.querySelector('[data-id="' + id + '"]');
+        if (element) {
+            this.$todoList.removeChild(element);
+        }
     };
 
     exports.app = exports.app || {};

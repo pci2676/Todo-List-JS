@@ -23,6 +23,10 @@
         this.storage.findAll(callback);
     };
 
+    TodoModel.prototype.remove = function (id, callback) {
+        this.storage.remove(id, callback);
+    };
+
     exports.app = exports.app || {};
     exports.app.TodoModel = TodoModel;
 })(this);
