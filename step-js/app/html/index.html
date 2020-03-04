@@ -3,107 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>TODO</title>
-    <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../fontawesome-free-5.12.1-web/css/fontawesome.min.css">
+    <link href="../fontawesome-free-5.12.1-web/css/solid.css">
 </head>
 <body>
-<div class="row">
-    <div class="col-md-6">
-        <div class="box box-green">
-            <div class="box-header ui-sortable-handle" style="cursor: move;">
-                <i class="ion ion-clipboard"></i>
-                <h3 class="box-title">To Do List</h3>
-                <div class="box-tools pull-right">
-                    <ul class="pagination pagination-sm inline">
-                        <li><a href="#">TODO</a></li>
-                        <li><a href="#">IN PROGRESS</a></li>
-                        <li><a href="#">DONE</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="box-body">
-                <ul class="todo-list ui-sortable">
-                    <li>
-            <span class="handle ui-sortable-handle">
-              <i class="fa fa-ellipsis-v"></i>
-              <i class="fa fa-ellipsis-v"></i>
-            </span>
-                        <input type="checkbox" value="" name="">
-                        <span class="text">Design a nice theme</span>
-                        <div class="tools">
-                            <i class="fa fa-edit"></i>
-                            <i class="fa fa-trash-o"></i>
-                        </div>
-                    </li>
-                    <li>
-            <span class="handle ui-sortable-handle">
-              <i class="fa fa-ellipsis-v"></i>
-              <i class="fa fa-ellipsis-v"></i>
-            </span>
-                        <input type="checkbox" value="" name="">
-                        <span class="text">Make the theme responsive</span>
-                        <div class="tools">
-                            <i class="fa fa-edit"></i>
-                            <i class="fa fa-trash-o"></i>
-                        </div>
-                    </li>
-                    <li>
-            <span class="handle ui-sortable-handle">
-              <i class="fa fa-ellipsis-v"></i>
-              <i class="fa fa-ellipsis-v"></i>
-            </span>
-                        <input type="checkbox" value="" name="">
-                        <span class="text">Let theme shine like a star</span>
-                        <div class="tools">
-                            <i class="fa fa-edit"></i>
-                            <i class="fa fa-trash-o"></i>
-                        </div>
-                    </li>
-                    <li>
-            <span class="handle ui-sortable-handle">
-              <i class="fa fa-ellipsis-v"></i>
-              <i class="fa fa-ellipsis-v"></i>
-            </span>
-                        <input type="checkbox" value="" name="">
-                        <span class="text">Let theme shine like a star</span>
-                        <div class="tools">
-                            <i class="fa fa-edit"></i>
-                            <i class="fa fa-trash-o"></i>
-                        </div>
-                    </li>
-                    <li>
-            <span class="handle ui-sortable-handle">
-              <i class="fa fa-ellipsis-v"></i>
-              <i class="fa fa-ellipsis-v"></i>
-            </span>
-                        <input type="checkbox" value="" name="">
-                        <span class="text">Check your messages and notifications</span>
-                        <div class="tools">
-                            <i class="fa fa-edit"></i>
-                            <i class="fa fa-trash-o"></i>
-                        </div>
-                    </li>
-                    <li>
-            <span class="handle ui-sortable-handle">
-              <i class="fa fa-ellipsis-v"></i>
-              <i class="fa fa-ellipsis-v"></i>
-            </span>
-                        <input type="checkbox" value="" name="">
-                        <span class="text">Let theme shine like a star</span>
-                        <div class="tools">
-                            <i class="fa fa-edit"></i>
-                            <i class="fa fa-trash-o"></i>
-                        </div>
-                    </li>
+<section class="todosection">
+    <div class="box box-green">
+        <div class="box-header ui-sortable-handle" style="cursor: move;">
+            <i class="ion ion-clipboard"></i>
+            <h3 class="box-title">나만의 TODO 앱</h3>
+            <div class="box-tools pull-right">
+                <ul class="pagination pagination-sm inline">
+                    <li><a href="#TODO">TODO</a></li>
+                    <li><a href="#INPROGRESS">IN PROGRESS</a></li>
+                    <li><a href="#DONE">DONE</a></li>
                 </ul>
             </div>
-            <div class="box-footer clearfix no-border">
-                <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-            </div>
+        </div>
+
+        <div class="box-body">
+            <ul class="todo-list ui-sortable">
+
+                <li class="ready">
+                            <span class="handle ui-sortable-handle">
+                                <i class="fas fa-ellipsis-v"></i>
+                                <i class="fas fa-ellipsis-v"></i>
+                            </span>
+                    <input name="" type="checkbox" value="">
+                    <span class="text">할일</span>
+                    <div class="tools">
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash"></i>
+                    </div>
+                </li>
+
+                <li class="ing">
+                            <span class="handle ui-sortable-handle">
+                                <i class="fas fa-ellipsis-v"></i>
+                                <i class="fas fa-ellipsis-v"></i>
+                            </span>
+                    <input name="" type="checkbox" value="">
+                    <span class="text">하는 중</span>
+                    <div class="tools">
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash"></i>
+                    </div>
+                </li>
+
+                <li class="done">
+                            <span class="handle ui-sortable-handle">
+                                <i class="fas fa-ellipsis-v"></i>
+                                <i class="fas fa-ellipsis-v"></i>
+                            </span>
+                    <input name="" type="checkbox" value="">
+                    <span class="text">완료</span>
+                    <div class="tools">
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash"></i>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <div class="box-footer clearfix no-border">
+            <input class="form-control pull-right" placeholder="Add Todo" type="text">
         </div>
     </div>
-</div>
+</section>
+<script async src="../fontawesome-free-5.12.1-web/js/solid.js"></script>
+<script async src="../fontawesome-free-5.12.1-web/js/fontawesome.min.js"></script>
 <script type="module" src="../js/app.js"></script>
 </body>
 </html>
@@ -113,3 +83,4 @@
 <!--<small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>-->
 <!--<small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>-->
 <!--<small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>-->
+<!--https://www.bootdey.com/snippets/view/To-Do-List#css-->

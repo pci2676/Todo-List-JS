@@ -1,6 +1,8 @@
 body {
-    margin-top: 20px;
     background: #eee;
+    min-width: 230px;
+    max-width: 550px;
+    margin: 0 auto;
 }
 
 .box.box-aqua {
