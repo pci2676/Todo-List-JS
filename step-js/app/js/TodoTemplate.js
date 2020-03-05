@@ -6,8 +6,8 @@ const TodoTemplate = {
                 <input name="" type="checkbox" value="">
                 <span class="text">${entity.text}</span>
                 <div class="tools">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash"></i>
+                    <span class="edit"><i class="fas fa-edit"></i></span>
+                    <span class="remove"><i class="fas fa-trash"></i></span>
                 </div>
             </li>`;
         return template;

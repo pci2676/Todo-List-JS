@@ -7,6 +7,7 @@ function TodoController(todoService) {
     const todoCount = document.querySelector("#count");
 
     inputTextBox.addEventListener('keyup', event => addTodo(event));
+    todoList.addEventListener('click', event => clickListener(event));
 
     function addTodo(event) {
         if (event.key !== 'Enter') {
@@ -24,6 +25,25 @@ function TodoController(todoService) {
             todoList.innerHTML += template;
             todoCount.textContent = "총 " + count + " 개"
         });
+    }
+
+    function clickListener(event) {
+        if (isRemove(event)) {
+            return;
+        }
+        if (isEdit(event)) {
+
+        }
+    }
+
+    function isRemove(event) {
+        const targetParent = event.target.parentElement;
+        return targetParent.className === "remove";
+    }
+
+    function isEdit(event) {
+        const targetParent = event.target.parentElement;
+        return targetParent.className === "edit";
     }
 }
 
