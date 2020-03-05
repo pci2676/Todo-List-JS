@@ -15,16 +15,25 @@ function TodoStorage() {
         return id;
     };
 
-    this.save = (item, callback) => {
-        const entity = {
-            id: this.getId(),
-            text: item
-        };
-
+    this.save = (entity, callback) => {
+        entity.id = this.getId();
         entities.push(entity);
         console.log("storage : save entity");
 
         callback(entity, entities.length);
+    };
+
+    this.delete = (id, callback) => {
+        console.log("storage : delete entity");
+
+        const targetId = parseInt(id);
+        for (let i = 0; i < entities.length; i++) {
+            if (entities[i].id === targetId) {
+                entities.splice(i, 1);
+                break;
+            }
+        }
+        callback(entities.length);
     };
 }
 
