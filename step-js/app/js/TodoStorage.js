@@ -36,6 +36,21 @@ function TodoStorage() {
         }
         callback(entities.length);
     };
+
+    this.edit = (id, editText, callback) => {
+        console.log("storage : edit entity");
+
+        const targetId = parseInt(id);
+        for (let i = 0; i < entities.length; i++) {
+            const aEntity = JSON.parse(entities[i]);
+            if (aEntity.id === targetId) {
+                aEntity.text = editText;
+                entities[i] = JSON.stringify(aEntity);
+                callback(editText, entities.length);
+                break;
+            }
+        }
+    }
 }
 
 export default TodoStorage;
