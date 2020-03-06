@@ -17,7 +17,7 @@ function TodoStorage() {
 
     this.save = (entity, callback) => {
         entity.id = this.getId();
-        entities.push(entity);
+        entities.push(JSON.stringify(entity));
         console.log("storage : save entity");
 
         callback(entity, entities.length);
@@ -28,7 +28,8 @@ function TodoStorage() {
 
         const targetId = parseInt(id);
         for (let i = 0; i < entities.length; i++) {
-            if (entities[i].id === targetId) {
+            const aEntity = JSON.parse(entities[i]);
+            if (aEntity.id === targetId) {
                 entities.splice(i, 1);
                 break;
             }
