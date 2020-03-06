@@ -15,6 +15,11 @@ function TodoView() {
         this.updateCount(count);
     };
 
+    this.editTodo = (li, editText, count) => {
+        li.querySelector(".text").textContent = editText;
+        this.updateCount(count);
+    };
+
     this.updateCount = (count) => {
         todoCount.textContent = "총 " + count + " 개";
     }

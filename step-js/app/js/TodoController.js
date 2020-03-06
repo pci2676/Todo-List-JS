@@ -37,7 +37,9 @@ function TodoController(todoService, todoView) {
             return;
         }
         if (isEdit(span)) {
-
+            const before = li.querySelector(".text").textContent;
+            const editText = prompt("바꿀 내용", before);
+            service.editItem(li.id, editText, (editItem, count) => view.editTodo(li, editItem, count));
         }
     }
 
