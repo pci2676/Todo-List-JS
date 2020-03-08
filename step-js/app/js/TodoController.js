@@ -6,6 +6,7 @@ function TodoController(todoService, todoView) {
 
     inputTextBox.addEventListener('keyup', addTodo);
     todoList.addEventListener('click', clickListener);
+    todoList.addEventListener('change', changeListener);
 
     function addTodo(event) {
         if (isNotEnter(event)) {
@@ -49,6 +50,22 @@ function TodoController(todoService, todoView) {
 
     function isEdit(targetParent) {
         return targetParent.className === "edit";
+    }
+
+    function changeListener(event) {
+        const checkBox = event.target;
+        const li = checkBox.parentElement;
+        const status = li.className;
+        if (status === 'ready') {
+            li.className = 'ing';
+            checkBox.checked = true;
+        } else if (status === 'ing') {
+            li.className = 'done';
+            checkBox.checked = true;
+        } else if (status === 'done') {
+            li.className = 'ready';
+            checkBox.checked = false;
+        }
     }
 }
 
