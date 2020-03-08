@@ -80,6 +80,21 @@ body {
     color: #444;
 }
 
+.todo-list > li.ready {
+    border-left: 5px solid;
+    border-left-color: orange;
+}
+
+.todo-list > li.ing {
+    border-left: 5px solid;
+    border-left-color: green;
+}
+
+.todo-list > li.done {
+    border-left: 5px solid;
+    border-left-color: blue;
+}
+
 .todo-list > li .label {
     margin-left: 10px;
     font-size: 9px;
