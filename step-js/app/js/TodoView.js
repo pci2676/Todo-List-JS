@@ -43,17 +43,21 @@ function TodoView() {
         checkBox.checked = false;
     };
 
-    this.getCategory = () => {
-        return self.category;
+    this.showCategory = (event) => {
+        const category = event.target.id;
+        toggleCategoryDisplay(category);
     };
 
-    this.showItem = (category, items) => {
-        changeCategory(category);
+    function toggleCategoryDisplay(clickedCategory) {
+        const target = 'todo-list ' + clickedCategory;
 
-    };
-
-    function changeCategory(category) {
-        self.category = category;
+        const categories = [readyList, ingList, doneList];
+        for (let i = 0; i < categories.length; i++) {
+            categories[i].style.display = 'none';
+            if (categories[i].className === target) {
+                categories[i].style.display = '';
+            }
+        }
     }
 
 }

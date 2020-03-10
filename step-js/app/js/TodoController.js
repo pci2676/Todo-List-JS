@@ -8,11 +8,7 @@ function TodoController(todoService, todoView) {
     inputTextBox.addEventListener('keyup', addTodo);
     todoList.addEventListener('click', clickListener);
     todoList.addEventListener('change', changeListener);
-    todoCategory.addEventListener('click', event => {
-        const from = view.getCategory();
-        const to = event.target.textContent;
-        //서비스에 현제 카테고리 + 바꿀 카테고리 보내줘서 데이터 뷰로 콜백시켜주기
-    });
+    todoCategory.addEventListener('click', todoView.showCategory);
 
 
     function addTodo(event) {
