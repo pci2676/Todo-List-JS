@@ -19,6 +19,11 @@ function TodoService(todoStorage) {
         this.todoStorage.edit(id, editText, callback);
     };
 
+    this.findAllItemByCategory = (from, to, callback) => {
+        if (from === to) {
+            this.todoStorage.findAllItemsByCategory(category, callback);
+        }
+    };
 }
 
 export default TodoService;

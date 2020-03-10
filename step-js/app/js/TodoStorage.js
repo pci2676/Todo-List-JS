@@ -50,7 +50,12 @@ function TodoStorage() {
                 break;
             }
         }
-    }
+    };
+
+    this.findAllItemsByCategory = (category, callback) => {
+        console.log("storage : find ", category, "'s items");
+
+    };
 }
 
 export default TodoStorage;

@@ -2,11 +2,18 @@ function TodoController(todoService, todoView) {
     const service = todoService;
     const view = todoView;
     const inputTextBox = document.querySelector("#inputText");
-    const todoList = document.querySelector(".todo-list");
+    const todoList = document.querySelector(".box-body");
+    const todoCategory = document.querySelector("#todo-category");
 
     inputTextBox.addEventListener('keyup', addTodo);
     todoList.addEventListener('click', clickListener);
     todoList.addEventListener('change', changeListener);
+    todoCategory.addEventListener('click', event => {
+        const from = view.getCategory();
+        const to = event.target.textContent;
+        //서비스에 현제 카테고리 + 바꿀 카테고리 보내줘서 데이터 뷰로 콜백시켜주기
+    });
+
 
     function addTodo(event) {
         if (isNotEnter(event)) {
@@ -53,19 +60,7 @@ function TodoController(todoService, todoView) {
     }
 
     function changeListener(event) {
-        const checkBox = event.target;
-        const li = checkBox.parentElement;
-        const status = li.className;
-        if (status === 'ready') {
-            li.className = 'ing';
-            checkBox.checked = true;
-        } else if (status === 'ing') {
-            li.className = 'done';
-            checkBox.checked = true;
-        } else if (status === 'done') {
-            li.className = 'ready';
-            checkBox.checked = false;
-        }
+        view.changeStatus(event.target);
     }
 }
 

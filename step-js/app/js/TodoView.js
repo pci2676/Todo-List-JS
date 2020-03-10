@@ -1,12 +1,16 @@
 import TodoTemplate from "./TodoTemplate.js";
 
 function TodoView() {
-    const todoList = document.querySelector(".todo-list");
+    const readyList = document.querySelector(".ready");
+    const ingList = document.querySelector(".ing");
+    const doneList = document.querySelector(".done");
     const todoCount = document.querySelector("#count");
+    const self = this;
+    self.category = "all";
 
     this.addTodo = (entity, count) => {
         const li = TodoTemplate.getList(entity);
-        todoList.appendChild(li);
+        readyList.appendChild(li);
         this.updateCount(count);
     };
 
@@ -22,7 +26,36 @@ function TodoView() {
 
     this.updateCount = (count) => {
         todoCount.textContent = "총 " + count + " 개";
+    };
+
+    this.changeStatus = (checkBox) => {
+        const li = checkBox.parentElement;
+        const ul = li.parentElement;
+        const status = ul.className;
+        if (status === 'todo-list ready') {
+            ingList.appendChild(li);
+        } else if (status === 'todo-list ing') {
+            doneList.appendChild(li);
+        } else if (status === 'todo-list done') {
+            readyList.appendChild(li);
+        }
+
+        checkBox.checked = false;
+    };
+
+    this.getCategory = () => {
+        return self.category;
+    };
+
+    this.showItem = (category, items) => {
+        changeCategory(category);
+
+    };
+
+    function changeCategory(category) {
+        self.category = category;
     }
+
 }
 
 export default TodoView;
