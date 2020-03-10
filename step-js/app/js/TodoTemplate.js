@@ -2,7 +2,6 @@ const TodoTemplate = {
     getList: (entity) => {
         const li = document.createElement("li");
         li.id = entity.id;
-        li.className = "ready";
         li.innerHTML =
             `<input name="" type="checkbox" value="">
              <span class="text">${entity.text}</span>

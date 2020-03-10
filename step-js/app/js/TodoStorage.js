@@ -50,7 +50,8 @@ function TodoStorage() {
                 break;
             }
         }
-    }
+    };
+
 }
 
 export default TodoStorage;
