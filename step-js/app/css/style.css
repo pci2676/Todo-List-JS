@@ -80,17 +80,17 @@ body {
     color: #444;
 }
 
-.todo-list > li.ready {
+.ready > li {
     border-left: 5px solid;
     border-left-color: orange;
 }
 
-.todo-list > li.ing {
+.ing > li {
     border-left: 5px solid;
     border-left-color: green;
 }
 
-.todo-list > li.done {
+.done > li {
     border-left: 5px solid;
     border-left-color: blue;
 }
