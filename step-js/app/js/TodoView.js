@@ -1,64 +1,58 @@
 import TodoTemplate from "./TodoTemplate.js";
 
 function TodoView() {
-    const readyList = document.querySelector(".ready");
-    const ingList = document.querySelector(".ing");
-    const doneList = document.querySelector(".done");
-    const todoCount = document.querySelector("#count");
-    const self = this;
-    self.category = "all";
+    this.$readyList = document.querySelector(".ready");
+    this.$ingList = document.querySelector(".ing");
+    this.$doneList = document.querySelector(".done");
+    this.$todoCount = document.querySelector("#count");
 
-    this.addTodo = (entity, count) => {
+    TodoView.prototype.addTodo = (entity, count) => {
         const li = TodoTemplate.getList(entity);
-        readyList.appendChild(li);
-        this.updateCount(count);
+        this.$readyList.appendChild(li);
+        TodoView.prototype.updateCount(count);
     };
 
-    this.removeTodo = (li, count) => {
+    TodoView.prototype.removeTodo = (li, count) => {
         li.style.display = "none";
-        this.updateCount(count);
+        TodoView.prototype.updateCount(count);
     };
 
-    this.editTodo = (li, editText, count) => {
+    TodoView.prototype.editTodo = (li, editText, count) => {
         li.querySelector(".text").textContent = editText;
-        this.updateCount(count);
+        TodoView.prototype.updateCount(count);
     };
 
-    this.updateCount = (count) => {
-        todoCount.textContent = "총 " + count + " 개";
+    TodoView.prototype.updateCount = (count) => {
+        this.$todoCount.textContent = "총 " + count + " 개";
     };
 
-    this.changeStatus = (checkBox) => {
+    TodoView.prototype.changeStatus = (checkBox) => {
         const li = checkBox.parentElement;
         const ul = li.parentElement;
         const status = ul.className;
         if (status === 'todo-list ready') {
-            ingList.appendChild(li);
+            this.$ingList.appendChild(li);
         } else if (status === 'todo-list ing') {
-            doneList.appendChild(li);
+            this.$doneList.appendChild(li);
         } else if (status === 'todo-list done') {
-            readyList.appendChild(li);
+            this.$readyList.appendChild(li);
         }
 
         checkBox.checked = false;
     };
 
-    this.showCategory = (event) => {
+    TodoView.prototype.showCategory = (event) => {
         const category = event.target.id;
-        toggleCategoryDisplay(category);
-    };
+        const target = 'todo-list ' + category;
 
-    function toggleCategoryDisplay(clickedCategory) {
-        const target = 'todo-list ' + clickedCategory;
-
-        const categories = [readyList, ingList, doneList];
+        const categories = [this.$readyList, this.$ingList, this.$doneList];
         for (let i = 0; i < categories.length; i++) {
             categories[i].style.display = 'none';
             if (categories[i].className === target) {
                 categories[i].style.display = '';
             }
         }
-    }
+    };
 
 }
 
