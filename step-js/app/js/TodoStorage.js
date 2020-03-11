@@ -1,7 +1,7 @@
 function TodoStorage() {
     const entities = [];
 
-    this.getId = () => {
+    TodoStorage.prototype.getId = () => {
         if (entities.length === 0) {
             return 1;
         }
@@ -15,7 +15,7 @@ function TodoStorage() {
         return id;
     };
 
-    this.save = (entity, callback) => {
+    TodoStorage.prototype.save = (entity, callback) => {
         entity.id = this.getId();
         entities.push(JSON.stringify(entity));
         console.log("storage : save entity");
@@ -23,7 +23,7 @@ function TodoStorage() {
         callback(entity, entities.length);
     };
 
-    this.delete = (id, callback) => {
+    TodoStorage.prototype.delete = (id, callback) => {
         console.log("storage : delete entity");
 
         const targetId = parseInt(id);
@@ -37,7 +37,7 @@ function TodoStorage() {
         callback(entities.length);
     };
 
-    this.edit = (id, editText, callback) => {
+    TodoStorage.prototype.edit = (id, editText, callback) => {
         console.log("storage : edit entity");
 
         const targetId = parseInt(id);
