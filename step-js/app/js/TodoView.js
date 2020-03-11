@@ -1,14 +1,14 @@
 import TodoTemplate from "./TodoTemplate.js";
 
 function TodoView() {
-    const readyList = document.querySelector(".ready");
-    const ingList = document.querySelector(".ing");
-    const doneList = document.querySelector(".done");
-    const todoCount = document.querySelector("#count");
+    this.$readyList = document.querySelector(".ready");
+    this.$ingList = document.querySelector(".ing");
+    this.$doneList = document.querySelector(".done");
+    this.$todoCount = document.querySelector("#count");
 
     TodoView.prototype.addTodo = (entity, count) => {
         const li = TodoTemplate.getList(entity);
-        readyList.appendChild(li);
+        this.$readyList.appendChild(li);
         TodoView.prototype.updateCount(count);
     };
 
@@ -23,7 +23,7 @@ function TodoView() {
     };
 
     TodoView.prototype.updateCount = (count) => {
-        todoCount.textContent = "총 " + count + " 개";
+        this.$todoCount.textContent = "총 " + count + " 개";
     };
 
     TodoView.prototype.changeStatus = (checkBox) => {
@@ -31,11 +31,11 @@ function TodoView() {
         const ul = li.parentElement;
         const status = ul.className;
         if (status === 'todo-list ready') {
-            ingList.appendChild(li);
+            this.$ingList.appendChild(li);
         } else if (status === 'todo-list ing') {
-            doneList.appendChild(li);
+            this.$doneList.appendChild(li);
         } else if (status === 'todo-list done') {
-            readyList.appendChild(li);
+            this.$readyList.appendChild(li);
         }
 
         checkBox.checked = false;
@@ -43,20 +43,16 @@ function TodoView() {
 
     TodoView.prototype.showCategory = (event) => {
         const category = event.target.id;
-        toggleCategoryDisplay(category);
-    };
+        const target = 'todo-list ' + category;
 
-    function toggleCategoryDisplay(clickedCategory) {
-        const target = 'todo-list ' + clickedCategory;
-
-        const categories = [readyList, ingList, doneList];
+        const categories = [this.$readyList, this.$ingList, this.$doneList];
         for (let i = 0; i < categories.length; i++) {
             categories[i].style.display = 'none';
             if (categories[i].className === target) {
                 categories[i].style.display = '';
             }
         }
-    }
+    };
 
 }
 

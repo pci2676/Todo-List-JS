@@ -1,27 +1,26 @@
 function TodoController(todoService, todoView) {
-    const service = todoService;
-    const view = todoView;
-    const inputTextBox = document.querySelector("#inputText");
-    const todoList = document.querySelector(".box-body");
-    const todoCategory = document.querySelector("#todo-category");
+    this.$service = todoService;
+    this.$view = todoView;
+    this.$inputTextBox = document.querySelector("#inputText");
+    this.$todoList = document.querySelector(".box-body");
+    this.$todoCategory = document.querySelector("#todo-category");
 
-    inputTextBox.addEventListener('keyup', event => TodoController.prototype.addTodo(event));
-    todoList.addEventListener('click', event => TodoController.prototype.clickListener(event));
-    todoList.addEventListener('change', event => TodoController.prototype.changeListener(event));
-    todoCategory.addEventListener('click', todoView.showCategory);
-
+    this.$inputTextBox.addEventListener('keyup', event => TodoController.prototype.addTodo(event));
+    this.$todoList.addEventListener('click', event => TodoController.prototype.clickListener(event));
+    this.$todoList.addEventListener('change', event => TodoController.prototype.changeListener(event));
+    this.$todoCategory.addEventListener('click', todoView.showCategory);
 
     TodoController.prototype.addTodo = (event) => {
         if (isNotEnter(event)) {
             return false;
         }
-        const itemText = inputTextBox.value;
-        inputTextBox.value = "";
+        const itemText = this.$inputTextBox.value;
+        this.$inputTextBox.value = "";
         if (isEmpty(itemText)) {
             return false;
         }
 
-        service.addItem(itemText, view.addTodo);
+        this.$service.addItem(itemText, this.$view.addTodo);
     };
 
     function isNotEnter(event) {
@@ -37,13 +36,13 @@ function TodoController(todoService, todoView) {
         const divTools = span.parentElement;
         const li = divTools.parentElement;
         if (isRemove(span)) {
-            service.removeItem(li.id, count => view.removeTodo(li, count));
+            this.$service.removeItem(li.id, count => this.$view.removeTodo(li, count));
             return;
         }
         if (isEdit(span)) {
             const before = li.querySelector(".text").textContent;
             const editText = prompt("바꿀 내용", before);
-            service.editItem(li.id, editText, (editItem, count) => view.editTodo(li, editItem, count));
+            this.$service.editItem(li.id, editText, (editItem, count) => this.$view.editTodo(li, editItem, count));
         }
     };
 
@@ -56,7 +55,7 @@ function TodoController(todoService, todoView) {
     }
 
     TodoController.prototype.changeListener = (event) => {
-        view.changeStatus(event.target);
+        this.$view.changeStatus(event.target);
     }
 }
 
